@@ -8,18 +8,12 @@ import com.mysql.cj.jdbc.Driver;
 public class App {
     public static void main(String[] args) throws Exception {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Load the MySQL driver
+            MYSQLDatabase.loadDriver();
+            
+            MYSQLDatabase mysqldatabase= new MYSQLDatabase("localhost", 3306, "poly_sports", "root", "");
+            mysqldatabase.connect();
 
-            Connection myConnection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/poly_sports",
-                "root",
-                ""
-            ); // Connect to the database
-
-            System.out.println("Connected to the database");
-
-            java.sql.Statement myStatement = myConnection.createStatement();
-            ResultSet myResultSet = myStatement.executeQuery("SELECT * FROM sport");
+            ResultSet myResultSet = mysqldatabase.createStatement().executeQuery("SELECT * FROM sport");
 
             while(myResultSet.next()){
                 

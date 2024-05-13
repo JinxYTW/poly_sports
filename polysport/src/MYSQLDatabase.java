@@ -14,7 +14,7 @@ public class MYSQLDatabase {
 
     public MYSQLDatabase(String host, int port, String database, String user, String password) {
         connection = null;
-        driverLoaded = false;
+        
         this.host = host;
         this.port = port;
         this.database = database;
@@ -30,6 +30,7 @@ public class MYSQLDatabase {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             driverLoaded = true;
+            System.out.println("Driver loaded");
         } catch (Exception e) {
             System.out.println("Error: " + e);
             
@@ -47,6 +48,7 @@ public class MYSQLDatabase {
                 user,
                 password
             ); // Connect to the database
+            System.out.println("Connected to the database");
         }
         catch(Exception e){
             System.out.println("Error: " + e);
@@ -58,7 +60,9 @@ public class MYSQLDatabase {
     public Statement createStatement() throws SQLException {
         if (connection != null){
         
-                return connection.createStatement();
+            return connection.createStatement();
+            
+                
             
             
         }
