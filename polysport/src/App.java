@@ -10,7 +10,7 @@ public class App {
         try {
             MYSQLDatabase.loadDriver();
             
-            MYSQLDatabase mysqldatabase= new MYSQLDatabase("localhost", 3306, "poly_sports", "root", "");
+            PolySportsDatabase mysqldatabase= PolySportsDatabase.getInstance(); //No comprendo
             mysqldatabase.connect();
 
             ResultSet myResultSet = mysqldatabase.createStatement().executeQuery("SELECT * FROM sport");
