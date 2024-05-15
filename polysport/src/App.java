@@ -32,6 +32,24 @@ public class App {
             System.out.println("Enter the name of the id: ");
             int id = scanner.nextInt();
             System.out.println(sportsDAO.findById(id));
+
+            System.out.println("Enter the name of the sport to insert: ");
+            String name2 = scanner.nextLine();
+            System.out.println("Enter the number of participants: ");
+            int participants = scanner.nextInt();
+            sportsDAO.insert(new Sport(0, name2, participants));
+
+            System.out.println("Enter the name of the sport to update: ");
+            String name3 = scanner.nextLine();
+            System.out.println("Enter the number of participants: ");
+            int participants2 = scanner.nextInt();
+            sportsDAO.update(new Sport(0, name3, participants2));
+
+            System.out.println("Enter the id of the sport to delete: ");
+            int id2 = scanner.nextInt();
+            sportsDAO.delete(id2);
+
+
             scanner.close();
         } catch (Exception e) {
             System.out.println("Error: " + e);

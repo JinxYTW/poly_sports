@@ -1,7 +1,10 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import com.mysql.cj.xdevapi.PreparableStatement;
 
 public class MYSQLDatabase {
     private String host;
@@ -44,7 +47,7 @@ public class MYSQLDatabase {
             return;
         try{
              connection = DriverManager.getConnection(
-                "jdbc:mysql://" + host + ":" + port + "/" + database,
+                "jdbc:mysql://" + host + ":" + port + "/" + database+"?allowMultiQueries=true",
                 user,
                 password
             ); // Connect to the database
@@ -69,5 +72,12 @@ public class MYSQLDatabase {
         return null;
     }  
 
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        if (connection != null){
+            return connection.prepareStatement(sql);
+        }
+        return null;
+
     }
+}
 
